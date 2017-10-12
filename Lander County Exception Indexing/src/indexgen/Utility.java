@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -144,6 +146,47 @@ public class Utility {
 		
 		fileScan.close();
 		return result.toString();
+		
+	}
+	
+	public static List<Keyword> filterKeywordList(List<Keyword> masterList, List<Keyword> filterList) {
+		
+		List<Keyword> result = new LinkedList<>();
+		
+		for (Keyword masterKey : masterList) {
+			
+			for (Keyword filterKey : filterList) {
+				
+				if (masterKey.getStem().equals(filterKey.getStem())) {
+					
+					result.add(masterKey);
+					break;
+					
+				}
+				
+			}
+			
+		}
+		
+		return result;
+		
+	}
+	
+	public static List<String> expandTerms(List<Keyword> keyList) {
+		
+		List<String> result = new LinkedList<String>();
+		
+		for (Keyword key : keyList) {
+			
+			for (String term : key.getTerms()) {
+				
+				result.add(term);
+				
+			}
+			
+		}
+		
+		return result;
 		
 	}
 	
