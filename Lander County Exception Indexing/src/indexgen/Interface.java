@@ -1,6 +1,7 @@
 package indexgen;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class Interface {
@@ -21,6 +22,12 @@ public class Interface {
 		
 		List<String> terms = Utility.expandTerms(stemData);
 		
+		try {
+			Utility.writeListToFile("C://Users/spelk/Desktop/OutputSample.txt", terms);
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+			
 		return;
 		
 	}

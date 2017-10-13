@@ -1,7 +1,9 @@
 package indexgen;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collection;
@@ -187,6 +189,25 @@ public class Utility {
 		}
 		
 		return result;
+		
+	}
+	
+	public static File writeListToFile(String directory, List<String> list) throws IOException {
+		
+		StringBuilder insert = new StringBuilder();
+		
+		for (String term : list) {
+			
+			insert.append(term);
+			insert.append(System.lineSeparator());
+			
+		}
+		
+		BufferedWriter writer = new BufferedWriter(new FileWriter(directory));
+		writer.write(insert.toString());
+		writer.close();
+		
+		return new File(directory);
 		
 	}
 	
